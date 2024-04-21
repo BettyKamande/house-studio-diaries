@@ -33,7 +33,7 @@ const PortfolioCarousel = () => {
                 <div className={`h-96 rounded-md overflow-hidden w-full relative sm:w-3/4 lg:w-2/3`}>
                     <div className="absolute w-full h-full left-0 top-0 bg-black bg-opacity-30 z-10"></div>
                     <Image className="w-full h-full object-cover" src={portfolios[currentIndex].img} alt="house-diaries-studio-portfolio" width={400} height={200} />
-                    <div className="absolute z-10 w-max flex flex-col gap-3 bottom-10 left-10">
+                    <div className="absolute z-10 w-max flex flex-col gap-3 bottom-5 left-5 sm:bottom-10 sm:left-10">
                         <h3 className="font-bold text-white text-3xl font-merriweather sm:text-4xl">{portfolios[currentIndex].title}</h3>
                         <Link className="flex gap-2 px-5 py-2 text-primary bg-background w-max items-center rounded-full" href={`/portfolio/${portfolios[currentIndex].id}`}>
                             View project
