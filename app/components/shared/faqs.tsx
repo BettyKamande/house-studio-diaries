@@ -10,7 +10,7 @@ const FAQS = () => {
     }
     return (
         <div className="flex flex-col gap-10 p-5 items-center text-primary sm:p-10 lg:p-20 ">
-            <h2 className="text-5xl font-extrabold w-max font-merriweather">Frequently Asked Questions</h2>
+            <h2 className="text-4xl font-extrabold font-merriweather sm:text-5xl lg:w-max">FAQs</h2>
             <div className="flex flex-col justify-center items-center gap-5 w-full lg:w-2/3 ">
             {questions.map((question, index) => (
                 <div className="p-5 border-b border-secondary cursor-pointer flex flex-col w-full gap-2" key={question.id} onClick={() => {toggleExpander(index)}} >
