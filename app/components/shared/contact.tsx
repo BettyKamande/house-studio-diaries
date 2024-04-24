@@ -1,6 +1,40 @@
+"use client";
+import { useState} from "react";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import axios from "axios";
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        address: "",
+        email: "",
+        phone: "",
+        preferredContact: "",
+        referral: ""
+    });
+    const [success, setSuccess] = useState(false);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+        const {name, value} = event.target;
+        setFormData(prev => ({...prev, [name]: value}))
+    }
+
+    const handleSubmit  = (e: React.FormEvent) => {
+        e.preventDefault();
+        axios.post("/api/sendEmail", formData).then((res)=> {
+            setSuccess(true);
+            setFormData({
+                name: "",
+                address: "",
+                email: "",
+                phone: "",
+                preferredContact: "",
+                referral: ""
+            });
+            setTimeout(() => {setSuccess(false)}, 3000);
+        }).catch(err => {console.log(err)})
+    }
+
     return (
         <section className="w-full h-auto bg-dark px-5 py-10 text-background flex flex-col gap-10 justify-center items-center sm:p-20">
             <div className="flex flex-col gap-3 items-center">
@@ -11,13 +45,24 @@ const Contact = () => {
                     brief and asking any questions you may have.
                 </p>
             </div>
-            <form className="w-full h-auto flex flex-col gap-3 sm:w-96">
-                <input className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" required placeholder="Full Name" type="text" />
-                <input className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" required placeholder="Project Address" type="text" />
-                <input className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" required placeholder="Email" type="email" />
-                <input className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" required placeholder="Phone Number" type="text" />
-                <input className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" required placeholder="Prferred Contact" type="text" />
-                <input className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" required placeholder="How Did you hear about us?" type="text" />
+            <form onSubmit={handleSubmit} className="w-full h-auto relative flex flex-col gap-3 sm:w-96">
+                {success && <div className="left-0 bottom-full absolute rounded-md text-sm flex justify-center items-center h-10 w-full bg-green-200 text-green-900">Thank you for contacting us</div>}
+                <input autoComplete="off" value={formData.name} onChange={handleChange} className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" name="name" required placeholder="Full Name" type="text" />
+                <input autoComplete="off" value={formData.address} onChange={handleChange} className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" name="address" required placeholder="Project Address" type="text" />
+                <input autoComplete="off" value={formData.email} onChange={handleChange} className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" name="email" required placeholder="Email" type="email" />
+                <input autoComplete="off" value={formData.phone} onChange={handleChange} className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none placeholder:text-secondary placeholder:uppercase  placeholder:text-xs" name="phone" required placeholder="Phone Number" type="text" />
+                <select value={formData.preferredContact} onChange={handleChange} className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none text-secondary uppercase  text-xs" required name="preferredContact">
+                    <option value="">Preferred Contact</option>
+                    <option value="Email">Email</option>
+                    <option value="Phone">Phone</option>
+                </select>
+                <select value={formData.referral} onChange={handleChange} className="py-1 px-2 h-10 w-full border-b-[1px] bg-dark border-primary outline-none text-secondary uppercase  text-xs" required name="referral">
+                    <option value="">How Did you hear about us?</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Pinterest">Pinterest</option>
+                    <option value="Youtube">Youtube</option>
+                    <option value="Referral">Referral</option>
+                </select>
                 <button className="flex mt-3 gap-3 w-full h-auto items-center justify-center text-primary bg-secondary py-2 px-6 rounded-full">
                     Submit
                     <AiOutlineArrowRight />

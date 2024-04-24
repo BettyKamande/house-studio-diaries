@@ -17,7 +17,7 @@ const Header = ({page}: {page: string}) => {
                     <div className="h-full  flex flex-col text-2xl gap-5  lg:flex-row lg:items-center lg:gap-14 lg:text-base  font-medium tracking-wide ">
                         <Link className={`py-3 flex h-full items-center ${page === "studio" ? "lg:border-b-[3px] lg:border-primary" : undefined}`} href="/studio">Studio</Link>
                         <Link className={`py-3 flex h-full items-center ${page === "portfolio" ? "lg:border-b-[3px] lg:border-primary" : undefined}`} href="/portfolio">Portfolio</Link>
-                        <Link className={`py-3 flex h-full items-center ${page === "about" ? "lg:border-b-[3px] lg:border-primary" : undefined}`} href="/about">About</Link>
+                        <Link className={`py-3 flex h-full items-center ${page === "betty" ? "lg:border-b-[3px] lg:border-primary" : undefined}`} href="/betty">About</Link>
                     </div>
                 </div>
                 <div className="h-full flex items-center text-primary lg:hidden">

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import Link from "next/link";
 
 const Intro = () => {
     return (
@@ -26,10 +27,10 @@ const Intro = () => {
                 escape is palpable. Our approach has always been deeply cinematic; we aspire to evoke positive emotions and 
                 reveal the inherent beauty within spaces, enhancing the way people feel and interact with their surroundings.
             </p>
-            <button className="flex gap-3 w-max h-auto items-center font-semibold bg-secondary py-2 px-6 rounded-full">
+            <Link href="/about" className="flex gap-3 w-max h-auto items-center font-semibold bg-secondary py-2 px-6 rounded-full">
                 Learn More
                 <AiOutlineArrowRight />
-            </button>
+            </Link>
         </section>
     )
 }
