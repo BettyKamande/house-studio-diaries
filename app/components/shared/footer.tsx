@@ -29,7 +29,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="w-full flex flex-col items-center justify-center pb-5">
-                <Link className="font-semibold text-sm text-blue-400 " href="/privacy-policy">Privacy Policy</Link>
+                <Link className="font-light text-sm text-blue-400 " href="/privacy-policy">Privacy Policy</Link>
                 <p className="w-full text-center text-xs font-light">House Diaries Studio © {date.getFullYear()}</p>
             </div>
         </section>
