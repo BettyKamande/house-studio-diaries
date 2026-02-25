@@ -22,7 +22,7 @@ const Footer = () => {
                         <h4 className="text-lg font-semibold">Contact Us</h4>
                         <div className="flex flex-col gap-1 text-sm font-light">
                             <p>+254 743 529 153</p>
-                            <p>contact@housediaries.studio</p>
+                            <p>housediariesstudio@gmail.com</p>
                             <p>12336 - 00400 Nairobi</p>
                         </div>
                     </div>
